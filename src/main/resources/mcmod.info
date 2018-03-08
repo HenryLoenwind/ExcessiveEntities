@@ -1,0 +1,16 @@
+[
+{
+  "modid": "excessive",
+  "name": "Excessive Entities",
+  "description": "nope",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Henry Loenwind"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
