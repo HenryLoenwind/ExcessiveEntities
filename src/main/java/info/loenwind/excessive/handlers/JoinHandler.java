@@ -5,6 +5,7 @@ import java.util.List;
 import info.loenwind.excessive.ExcessiveMod;
 import info.loenwind.excessive.config.Config;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextComponentString;
@@ -33,6 +34,16 @@ public class JoinHandler {
     List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, bb);
     if (list.size() > Config.maxEntities.getInt()) {
       event.setCanceled(true);
+
+      if (entity instanceof EntityXPOrb) {
+        for (Entity other : list) {
+          if (other instanceof EntityXPOrb && !other.isDead) {
+            ((EntityXPOrb) other).xpValue += ((EntityXPOrb) entity).xpValue;
+            return;
+          }
+        }
+      }
+
       long now = world.getTotalWorldTime();
       if (now > silentUntil) {
         silentUntil = now + 5 * 20;
