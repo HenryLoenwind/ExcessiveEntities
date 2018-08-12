@@ -47,8 +47,9 @@ public class JoinHandler {
       long now = world.getTotalWorldTime();
       if (now > silentUntil) {
         silentUntil = now + 5 * 20;
-        ((WorldServer) world).getMinecraftServer().getPlayerList().sendMessage(new TextComponentString("Excessive entities at " + ((int) entity.posX) + "/"
-            + ((int) entity.posY) + "/" + ((int) entity.posZ) + (silentRejects == 0 ? "" : " (" + silentRejects + " more)")));
+        ((WorldServer) world).getMinecraftServer().getPlayerList()
+            .sendMessage(new TextComponentString("Excessive entities at " + ((int) entity.posX) + "/" + ((int) entity.posY) + "/" + ((int) entity.posZ)
+                + " in dim " + entity.world.provider.getDimension() + (silentRejects == 0 ? "" : " (" + silentRejects + " more)")));
         silentRejects = 0;
       } else {
         silentRejects++;
